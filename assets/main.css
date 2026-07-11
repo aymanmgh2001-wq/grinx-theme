@@ -1,0 +1,123 @@
+/* Main GRINX theme stylesheet (core variables + hero styles) */
+:root{
+  --grx-primary: #0A0A0A;
+  --grx-secondary: #1A1A1A;
+  --grx-accent: #C0C0C0;
+  --grx-highlight: #8B5CF6;
+  --grx-text: #FFFFFF;
+  --grx-glass-alpha: 0.08;
+  --grx-radius: 14px;
+  --grx-transition: 300ms cubic-bezier(.2,.9,.2,1);
+  --grx-scale-on-hover: 1.04;
+}
+
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--grx-primary);
+  color:var(--grx-text);
+  font-family: "GRINX-FUTURE", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+
+.grx-star-canvas{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+}
+
+.grx-hero{position:relative;min-height:88vh;display:flex;align-items:center;justify-content:center;padding:6vw 4vw;overflow:hidden}
+.grx-hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:2rem;max-width:1200px;width:100%}
+
+.grx-logo-wrap{width:min(720px,85%);display:flex;align-items:center;justify-content:center;transform-style:preserve-3d;will-change:transform;transition:transform var(--grx-transition)}
+.grx-logo-img{max-width:100%;height:auto;display:block;filter:drop-shadow(0 24px 48px rgba(0,0,0,0.6)) saturate(120%);transform:translateZ(20px)}
+.grx-logo-text{
+  font-size:clamp(36px,8vw,128px);
+  letter-spacing:0.06em;
+  font-weight:900;
+  background:linear-gradient(135deg,#C0C0C0 0%, #8B5CF6 35%, #3B82F6 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  text-transform:uppercase;
+  filter:drop-shadow(0 10px 30px rgba(0,0,0,.8)) saturate(120%);
+  position:relative;
+  transform:translateZ(40px) rotateX(2deg);
+}
+
+.grx-logo-text::after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(90deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.0) 30%, rgba(255,255,255,0.08) 62%, rgba(255,255,255,0.0) 100%);
+  mix-blend-mode:screen;
+  pointer-events:none;
+  transform:translateZ(60px);
+}
+
+.glass-card{
+  background:linear-gradient(180deg, rgba(255,255,255,var(--grx-glass-alpha)), rgba(255,255,255,calc(var(--grx-glass-alpha) - 0.02)));
+  border:1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px);
+  padding:1.6rem 2rem;
+  border-radius:var(--grx-radius);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  text-align:center;
+  max-width:760px;
+}
+
+.btn-primary{
+  display:inline-block;
+  margin-top:1rem;
+  padding:.9rem 1.6rem;
+  background:linear-gradient(90deg,var(--grx-highlight), #3B82F6);
+  color:var(--grx-text);
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:700;
+  transition:transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms;
+  box-shadow:0 10px 30px rgba(139,92,246,0.12);
+}
+.btn-primary:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 18px 40px rgba(59,130,246,0.14)}
+
+.grx-cursor-light{
+  position:fixed;
+  left:0;top:0;
+  width:220px;height:220px;
+  border-radius:50%;
+  pointer-events:none;
+  transform:translate(-50%,-50% ) scale(0.6);
+  background:radial-gradient(circle at 40% 30%, rgba(139,92,246,0.25), rgba(59,130,246,0.06) 40%, rgba(0,0,0,0) 65%);
+  mix-blend-mode:screen;
+  z-index:1;
+  filter:blur(24px);
+  transition:transform 250ms linear;
+}
+
+.grx-product-card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:14px;
+  overflow:hidden;
+  transition:transform var(--grx-transition), box-shadow var(--grx-transition);
+  transform-origin:center;
+  will-change:transform;
+}
+.grx-product-card:hover{
+  transform:translateY(-10px) rotateX(4deg) scale(var(--grx-scale-on-hover));
+  box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+}
+
+.grx-reveal{opacity:0;transform:translateY(20px);transition:opacity 600ms ease, transform 600ms ease}
+.grx-reveal.in-view{opacity:1;transform:none}
+
+@media (max-width: 768px){
+  .grx-hero{padding:6vw 6vw;min-height:72vh}
+  .grx-logo-text{font-size:clamp(28px,10vw,64px)}
+  .grx-logo-wrap{width:100%}
+  .grx-hero-inner{gap:1.25rem}
+}

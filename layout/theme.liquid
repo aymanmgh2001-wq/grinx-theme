@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#0A0A0A">
+    <title>{{ page_title }} - {{ shop.name }}</title>
+
+    {%- comment -%} Preload the theme font if present {%- endcomment -%}
+    {% if 'grinx-font.woff2' | asset_url %}
+      <link rel="preload" href="{{ 'grinx-font.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+    {% endif %}
+
+    {{ 'main.css' | asset_url | stylesheet_tag }}
+    {{ content_for_header }}
+  </head>
+  <body class="grx-body">
+    <header class="grx-header">
+      <div class="grx-header-inner">
+        <a href="/" class="grx-logo-link" aria-label="Home">
+          {% if theme.settings.logo_image != blank %}
+            <img src="{{ theme.settings.logo_image | img_url: '1024x' }}" alt="{{ shop.name }}" class="grx-logo">
+          {% else %}
+            {% include 'logo-fallback' %}
+          {% endif %}
+        </a>
+        <nav class="grx-nav">
+          <a href="/collections/all">Shop</a>
+          <a href="/pages/about">About</a>
+          <a href="/blogs/news">Journal</a>
+        </nav>
+        <div class="grx-actions">
+          <a href="/cart" class="grx-cart" aria-label="Cart">Cart</a>
+        </div>
+      </div>
+    </header>
+
+    <main role="main">
+      {{ content_for_layout }}
+    </main>
+
+    <footer>
+      {% section 'footer' %}
+    </footer>
+
+    {{ 'main.js' | asset_url | script_tag }}
+    {{ content_for_footer }}
+  </body>
+</html>

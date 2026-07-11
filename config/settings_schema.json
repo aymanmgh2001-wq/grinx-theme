@@ -1,0 +1,26 @@
+{
+  "name": "grinx-theme",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo image"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight color",
+      "default": "#8B5CF6"
+    },
+    {
+      "type": "select",
+      "id": "highlight_choice",
+      "label": "Highlight preset",
+      "options": [
+        {"value":"purple","label":"Electric Purple"},
+        {"value":"blue","label":"Neon Blue"}
+      ],
+      "default": "purple"
+    }
+  ]
+}

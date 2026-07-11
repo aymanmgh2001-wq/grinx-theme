@@ -1,0 +1,37 @@
+<footer class="grx-footer">
+  <div class="grx-footer-inner">
+    <div class="grx-footer-brand">
+      {% if settings.logo_image != blank %}
+        <img src="{{ settings.logo_image | img_url: '300x' }}" alt="{{ shop.name }}">
+      {% else %}
+        {% include 'logo-fallback' %}
+      {% endif %}
+      <p class="muted">GRINX — Exclusivity, confidence, creativity.</p>
+    </div>
+
+    <div class="grx-footer-links">
+      <div>
+        <h4>Shop</h4>
+        <a href="/collections/all">All</a>
+        <a href="/collections/new">New</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="/pages/about">About</a>
+        <a href="/pages/contact">Contact</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <a href="#" class="social">Instagram</a>
+        <a href="#" class="social">TikTok</a>
+      </div>
+    </div>
+  </div>
+  <div class="grx-footer-bottom">
+    <small>© {{ 'now' | date: '%Y' }} {{ shop.name }} — All rights reserved.</small>
+  </div>
+</footer>
+
+{% schema %}
+{"name":"Footer — GRINX","settings":[],"blocks":[],"presets":[{"name":"Footer"}]} 
+{% endschema %}

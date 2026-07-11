@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "headline": "The Future of Streetwear",
+        "subhead": "Exclusivity. Confidence. Creativity.",
+        "cta_text": "Shop the Drop",
+        "cta_link": "/collections/frontpage"
+      }
+    }
+  },
+  "order": [
+    "hero"
+  ]
+}

@@ -1,0 +1,68 @@
+{% comment %}
+  Basic OS2.0 product section skeleton.
+{% endcomment %}
+
+<section id="product-{{ section.id }}" class="grx-product-section grx-reveal">
+  <div class="container">
+    <div class="grx-product-grid">
+      <div class="grx-product-gallery">
+        {% for media in product.media %}
+          <div class="grx-media-item" data-media-id="{{ media.id }}">
+            {% case media.media_type %}
+              {% when 'image' %}
+                <img src="{{ media.preview_image | img_url: '1600x' }}" alt="{{ media.alt | escape }}" loading="lazy" />
+              {% when 'model' %}
+                {{ media | model_viewer }}
+            {% endcase %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="grx-product-info">
+        <h1 class="product-title">{{ product.title }}</h1>
+        <p class="product-vendor">{{ product.vendor }}</p>
+        <div class="product-price">{{ product.price | money }}</div>
+
+        <form method="post" action="/cart/add" id="product-form-{{ section.id }}" class="product-form">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
+
+          {% for option in product.options_with_values %}
+            <div class="grx-option">
+              <div class="grx-option-label">{{ option.name }}</div>
+              <div class="grx-option-values">
+                {% for value in option.values %}
+                  <label class="pill">
+                    <input type="radio" name="options[{{ option.name }}]" value="{{ value }}" {% if forloop.first %}checked{% endif %}>
+                    <span>{{ value }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+
+          <div class="grx-qty-add">
+            <div class="quantity">
+              <label for="qty-{{ section.id }}" class="visually-hidden">Quantity</label>
+              <input id="qty-{{ section.id }}" name="quantity" value="1" min="1" type="number">
+            </div>
+
+            <button class="grx-add-to-cart sticky-add btn-primary" type="submit">Add to cart</button>
+          </div>
+        </form>
+
+        <div class="grx-product-description">
+          {{ product.description }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product — GRINX",
+  "settings": [],
+  "blocks": [],
+  "presets": [{"name":"Product"}]
+}
+{% endschema %}

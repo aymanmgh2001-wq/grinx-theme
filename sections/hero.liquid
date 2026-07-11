@@ -1,0 +1,72 @@
+<div id="grinx-hero" class="grx-hero" data-section-id="{{ section.id }}">
+  <canvas id="grx-star-canvas" class="grx-star-canvas" aria-hidden="true"></canvas>
+
+  <div class="grx-hero-inner">
+    <div class="grx-logo-wrap" id="grx-logo-wrap" role="img" aria-label="{{ section.settings.logo_alt }}">
+      {% if section.settings.logo_image != blank %}
+        <img class="grx-logo-img" src="{{ section.settings.logo_image | img_url: '2048x' }}" alt="{{ section.settings.logo_alt }}">
+      {% else %}
+        <h1 class="grx-logo-text">GRINX</h1>
+      {% endif %}
+    </div>
+
+    <div class="grx-hero-card glass-card">
+      <h2 class="grx-headline">{{ section.settings.headline }}</h2>
+      <p class="grx-subhead">{{ section.settings.subhead }}</p>
+      {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
+        <a class="grx-cta btn-primary" href="{{ section.settings.cta_link }}">{{ section.settings.cta_text }}</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="grx-cursor-light" id="grx-cursor-light" aria-hidden="true"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero — GRINX",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo image (high-res)"
+    },
+    {
+      "type": "text",
+      "id": "logo_alt",
+      "label": "Logo alt text",
+      "default": "GRINX"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "The Future of Streetwear"
+    },
+    {
+      "type": "textarea",
+      "id": "subhead",
+      "label": "Subhead",
+      "default": "Exclusivity. Confidence. Creativity."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA text",
+      "default": "Shop the Drop"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link",
+      "default": "/collections/frontpage"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero — GRINX",
+      "category": "Hero"
+    }
+  ]
+}
+{% endschema %}
