@@ -7,7 +7,7 @@
     <title>{{ page_title }} - {{ shop.name }}</title>
 
     {%- comment -%} Preload the theme font if present {%- endcomment -%}
-    {% if 'grinx-font.woff2' | asset_url %}
+    {% if 'grinx-font.woff2' %}
       <link rel="preload" href="{{ 'grinx-font.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
     {% endif %}
 
@@ -47,3 +47,13 @@
     {{ content_for_footer }}
   </body>
 </html>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% if 'grinx-font.woff2' | asset_url %}"
+  to: "{% if 'grinx-font.woff2' %}"
+  position: 321..348
+{% endcomment %}
